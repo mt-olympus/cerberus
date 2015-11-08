@@ -46,19 +46,21 @@ class CerberusTest extends \PHPUnit_Framework_TestCase
         $sm = new ServiceManager(new Config());
         $sm->setService('config', ['cerberus' => [
             'storage' => [
-            'adapter' => [
-                'name' => 'filesystem',
-                'options' => [
-                    'cache_dir' => 'data/cache',
-                    'namespace' => 'test',
+                'adapter' => [
+                    'name' => 'filesystem',
+                    'options' => [
+                        'cache_dir' => 'data/cache',
+                        'namespace' => 'test',
+                    ],
+                ],
+                'plugins' => [
+                    // Don't throw exceptions on cache errors
+                    'exception_handler' => [
+                        'throw_exceptions' => true,
+                    ],
                 ],
             ],
-            'plugins' => [
-                // Don't throw exceptions on cache errors
-                'exception_handler' => [
-                    'throw_exceptions' => true,
-                ],
-            ], ], ]]);
+        ]]);
         $this->assertInstanceOf(Cerberus::class, (new Factory())->__invoke($sm));
     }
 
