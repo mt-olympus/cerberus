@@ -1,0 +1,34 @@
+sudo: false
+
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 5.5
+    - php: 5.6
+      env:
+        - EXECUTE_CS_CHECK=true
+    - php: 7
+    - php: hhvm
+  allow_failures:
+    - php: 7
+    - php: hhvm
+
+before_install:
+  - composer self-update
+
+install:
+  - travis_retry composer install --no-interaction --ignore-platform-reqs --prefer-source --no-scripts
+  - composer info -i
+  
+script:
+  - (phpunit -c phpunit.xml)
+  - if [[ $EXECUTE_CS_CHECK == 'true' ]]; then ./vendor/bin/phpcs ; fi
+
+after_script:
+  - php vendor/bin/coveralls -v

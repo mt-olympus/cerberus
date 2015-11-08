@@ -1,0 +1,20 @@
+<?php
+return [
+    'cerberus' => [
+        'storage' => [
+            'adapter' => [
+                'name' => 'filesystem',
+                'options' => [
+                    'cache_dir' => 'data/cache',
+                    //'namespace' => 'test'
+                ]
+            ],
+            'plugins' => [
+                // Don't throw exceptions on cache errors
+                'exception_handler' => [
+                    'throw_exceptions' => false
+                ]
+            ]
+        ]
+    ]
+];

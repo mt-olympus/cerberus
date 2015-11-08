@@ -6,3 +6,5 @@ vendor/
 .project
 .buildpath
 .settings
+test/data
+build/*
