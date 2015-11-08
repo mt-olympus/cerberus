@@ -1,5 +1,6 @@
 <?php
-namespace CerberusTest;
+
+namespace Cerberustest;
 
 use Zend\Cache\StorageFactory;
 use Cerberus\CerberusInterface;
@@ -16,7 +17,7 @@ class CerberusTest extends \PHPUnit_Framework_TestCase
     {
         $storage = StorageFactory::factory([
             'adapter' => [
-                'name'    => 'filesystem',
+                'name' => 'filesystem',
                 'options' => [
                     'cache_dir' => 'data/cache',
                     'namespace' => 'test',
@@ -28,25 +29,25 @@ class CerberusTest extends \PHPUnit_Framework_TestCase
                     'throw_exceptions' => true,
                 ],
                 //'Serializer',
-            ]
+            ],
         ]);
 
         $storage->flush();
 
-        $this->cerberus = new Cerberus($storage,2,2);
+        $this->cerberus = new Cerberus($storage, 2, 2);
     }
 
     public function testFactory()
     {
         $sm = new ServiceManager(new Config());
         $sm->setService('config', []);
-        $this->assertInstanceOf(Cerberus::class, (new Factory)->__invoke($sm));
+        $this->assertInstanceOf(Cerberus::class, (new Factory())->__invoke($sm));
 
         $sm = new ServiceManager(new Config());
         $sm->setService('config', ['cerberus' => [
             'storage' => [
             'adapter' => [
-                'name'    => 'filesystem',
+                'name' => 'filesystem',
                 'options' => [
                     'cache_dir' => 'data/cache',
                     'namespace' => 'test',
@@ -57,8 +58,8 @@ class CerberusTest extends \PHPUnit_Framework_TestCase
                 'exception_handler' => [
                     'throw_exceptions' => true,
                 ],
-            ]]]]);
-        $this->assertInstanceOf(Cerberus::class, (new Factory)->__invoke($sm));
+            ], ], ]]);
+        $this->assertInstanceOf(Cerberus::class, (new Factory())->__invoke($sm));
     }
 
     public function testCreatedClosed()

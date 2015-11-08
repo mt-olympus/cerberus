@@ -1,4 +1,5 @@
 <?php
+
 namespace Cerberus;
 
 use Zend\Cache\Storage\StorageInterface;
@@ -19,8 +20,7 @@ class Cerberus implements CerberusInterface
     }
 
     /**
-     *
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @see \Cerberus\CerberusInterface::isAvailable()
      */
@@ -42,8 +42,7 @@ class Cerberus implements CerberusInterface
     }
 
     /**
-     *
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @see \Cerberus\CerberusInterface::getStatus()
      */
@@ -62,6 +61,7 @@ class Cerberus implements CerberusInterface
         if (!$success) {
             $lastAttempt = time();
             $this->storage->setItem('last_attempt', $lastAttempt);
+
             return CerberusInterface::OPEN;
         }
 
@@ -70,6 +70,7 @@ class Cerberus implements CerberusInterface
         if (time() - $lastAttempt >= $this->timeout) {
             $lastAttempt = time();
             $this->storage->setItem('last_attempt', $lastAttempt);
+
             return CerberusInterface::HALF_OPEN;
         }
 
@@ -77,8 +78,7 @@ class Cerberus implements CerberusInterface
     }
 
     /**
-     *
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @see \Cerberus\CerberusInterface::reportFailure()
      */
@@ -88,8 +88,7 @@ class Cerberus implements CerberusInterface
     }
 
     /**
-     *
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @see \Cerberus\CerberusInterface::reportSuccess()
      */

@@ -1,4 +1,5 @@
 <?php
+
 namespace Cerberus;
 
 use Zend\Cache\StorageFactory;
@@ -12,7 +13,7 @@ class Factory
         if (!isset($config['cerberus']['storage'])) {
             $storageConfig = [
                 'adapter' => [
-                    'name'    => 'filesystem',
+                    'name' => 'filesystem',
                     'cache_dir' => 'data/cache',
                 ],
                 'plugins' => [
@@ -21,13 +22,14 @@ class Factory
                         'throw_exceptions' => false,
                     ],
                     'Serializer',
-                ]
+                ],
             ];
         } else {
             $storageConfig = $config['cerberus']['storage'];
         }
 
         $storage = StorageFactory::factory($storageConfig);
+
         return new Cerberus($storage);
     }
 }

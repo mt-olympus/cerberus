@@ -8,3 +8,4 @@ vendor/
 .settings
 test/data
 build/*
+/.php_cs.cache
