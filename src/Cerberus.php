@@ -1,17 +1,51 @@
 <?php
 
+/**
+ * The Cerberus class.
+ *
+ * @author  Leandro Silva <leandro@leandrosilva.info>
+ * @license https://github.com/mt-olympus/cerberus/blob/master/LICENSE MIT Licence
+ */
 namespace Cerberus;
 
 use Zend\Cache\Storage\StorageInterface;
 
+/**
+ * The Cerberus Class.
+ *
+ * @author  Leandro Silva <leandro@leandrosilva.info>
+ * @license https://github.com/mt-olympus/cerberus/blob/master/LICENSE MIT Licence
+ */
 class Cerberus implements CerberusInterface
 {
+    /**
+     * The storage object.
+     *
+     * @var \Zend\Cache\Storage\StorageInterface
+     */
     private $storage;
 
+    /**
+     * Maximum number of failures to open the circuit.
+     *
+     * @var int
+     */
     private $maxFailures;
 
+    /**
+     * Number of seconds to change from OPEN to HALF OPEN and try the connection again.
+     *
+     * @var int
+     */
     private $timeout;
 
+    /**
+     * Constructor.
+     *
+     * @param \Zend\Cache\Storage\StorageInterface $storage     The storage object
+     * @param int                                  $maxFailures Maximum number of failures to open the circuit
+     * @param int                                  $timeout     Number of seconds to change from OPEN to HALF OPEN and try the connection again
+     */
     public function __construct(StorageInterface $storage, $maxFailures = 5, $timeout = 30)
     {
         $this->maxFailures = (int) $maxFailures;
@@ -29,7 +63,12 @@ class Cerberus implements CerberusInterface
         return $this->getStatus() !== CerberusInterface::OPEN;
     }
 
-    private function getFailures()
+    /**
+     * {@inheritdoc}
+     *
+     * @see \Cerberus\CerberusInterface::getStatus()
+     */
+    public function getStatus()
     {
         $success = false;
         $failures = (int) $this->storage->getItem('failures', $success);
@@ -38,17 +77,6 @@ class Cerberus implements CerberusInterface
             $this->storage->setItem('failures', $failures);
         }
 
-        return $failures;
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @see \Cerberus\CerberusInterface::getStatus()
-     */
-    public function getStatus()
-    {
-        $failures = $this->getFailures();
         // Still has failures left
         if ($failures < $this->maxFailures) {
             return CerberusInterface::CLOSED;

@@ -6,5 +6,5 @@ vendor/
 .buildpath
 .settings
 test/data
-build/*
+build
 /.php_cs.cache
