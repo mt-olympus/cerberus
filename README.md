@@ -1,6 +1,6 @@
 # Cerberus
 
-[![Build Status](https://travis-ci.org/mt-olympus/cerberus.svg?branch=master)](https://travis-ci.org/mt-olympus/cerberus) [![Coverage Status](https://coveralls.io/repos/Lansoweb/cerberus/badge.svg?branch=master&service=github)](https://coveralls.io/github/Lansoweb/cerberus?branch=master) [![Latest Stable Version](https://poser.pugx.org/mt-olympus/cerberus/v/stable.svg)](https://packagist.org/packages/mt-olympus/cerberus) [![Total Downloads](https://poser.pugx.org/mt-olympus/cerberus/downloads.svg)](https://packagist.org/packages/mt-olympus/cerberus) 
+[![Build Status](https://travis-ci.org/mt-olympus/cerberus.svg?branch=master)](https://travis-ci.org/mt-olympus/cerberus) [![Coverage Status](https://coveralls.io/repos/Lansoweb/cerberus/badge.svg?branch=master&service=github)](https://coveralls.io/github/Lansoweb/cerberus?branch=master) [![Latest Stable Version](https://poser.pugx.org/mt-olympus/cerberus/v/stable.svg)](https://packagist.org/packages/mt-olympus/cerberus) [![Total Downloads](https://poser.pugx.org/mt-olympus/cerberus/downloads.svg)](https://packagist.org/packages/mt-olympus/cerberus) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mt-olympus/cerberus/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mt-olympus/cerberus/?branch=master) [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/a402a92f-143d-432a-9a02-8c4ae64752c2.svg?style=flat)](https://insight.sensiolabs.com/projects/a402a92f-143d-432a-9a02-8c4ae64752c2) 
 
 ## Introduction
 

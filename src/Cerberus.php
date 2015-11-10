@@ -49,9 +49,9 @@ class Cerberus implements CerberusInterface
     /**
      * Constructor.
      *
-     * @param \Zend\Cache\Storage\StorageInterface $storage     The storage object
-     * @param int                                  $maxFailures Maximum number of failures to open the circuit
-     * @param int                                  $timeout     Number of seconds to change from OPEN to HALF OPEN and try the connection again
+     * @param StorageInterface $storage     The storage object
+     * @param int              $maxFailures Maximum number of failures to open the circuit
+     * @param int              $timeout     Number of seconds to change from OPEN to HALF OPEN
      */
     public function __construct(StorageInterface $storage, $maxFailures = 5, $timeout = 30)
     {
