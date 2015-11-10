@@ -8,8 +8,8 @@
  */
 namespace Cerberus;
 
-use Zend\Cache\StorageFactory;
 use Interop\Container\ContainerInterface;
+use Zend\Cache\StorageFactory;
 
 /**
  * Factory class for Cerberus.
