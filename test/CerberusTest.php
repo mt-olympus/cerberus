@@ -2,12 +2,12 @@
 
 namespace Cerberustest;
 
-use Zend\Cache\StorageFactory;
-use Cerberus\CerberusInterface;
 use Cerberus\Cerberus;
+use Cerberus\CerberusInterface;
 use Cerberus\Factory;
-use Zend\ServiceManager\ServiceManager;
+use Zend\Cache\StorageFactory;
 use Zend\ServiceManager\Config;
+use Zend\ServiceManager\ServiceManager;
 
 class CerberusTest extends \PHPUnit_Framework_TestCase
 {
