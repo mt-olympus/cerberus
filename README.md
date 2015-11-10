@@ -1,6 +1,6 @@
 # Cerberus
 
-UNDER DEVELOPMENT!
+[![Build Status](https://travis-ci.org/mt-olympus/cerberus.svg?branch=master)](https://travis-ci.org/mt-olympus/cerberus) [![Coverage Status](https://coveralls.io/repos/Lansoweb/cerberus/badge.svg?branch=master&service=github)](https://coveralls.io/github/Lansoweb/cerberus?branch=master) [![Latest Stable Version](https://poser.pugx.org/mt-olympus/cerberus/v/stable.svg)](https://packagist.org/packages/mt-olympus/cerberus) [![Total Downloads](https://poser.pugx.org/mt-olympus/cerberus/downloads.svg)](https://packagist.org/packages/mt-olympus/cerberus) 
 
 ## Introduction
 

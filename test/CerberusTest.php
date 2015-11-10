@@ -45,6 +45,8 @@ class CerberusTest extends \PHPUnit_Framework_TestCase
 
         $sm = new ServiceManager(new Config());
         $sm->setService('config', ['cerberus' => [
+            'max_failure' => 2,
+            'timeout' => 2,
             'storage' => [
                 'adapter' => [
                     'name' => 'filesystem',
@@ -98,5 +100,17 @@ class CerberusTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(CerberusInterface::OPEN, $this->cerberus->getStatus());
         sleep(3);
         $this->assertSame(CerberusInterface::HALF_OPEN, $this->cerberus->getStatus());
+    }
+
+    public function testHandleMoreServices()
+    {
+        $this->cerberus->reportFailure('service1');
+        $this->assertSame(CerberusInterface::CLOSED, $this->cerberus->getStatus('service1'));
+        $this->cerberus->reportFailure('service2');
+        $this->assertSame(CerberusInterface::CLOSED, $this->cerberus->getStatus('service2'));
+        $this->cerberus->reportFailure('service1');
+        $this->cerberus->reportFailure('service1');
+        $this->assertSame(CerberusInterface::OPEN, $this->cerberus->getStatus('service1'));
+        $this->assertSame(CerberusInterface::CLOSED, $this->cerberus->getStatus('service2'));
     }
 }
