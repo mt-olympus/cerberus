@@ -35,8 +35,8 @@ class Factory
                     'name' => 'filesystem',
                     'options' => [
                         'cache_dir' => 'data/cache',
-                        'namespace' => 'cerberus'
-                    ]
+                        'namespace' => 'cerberus',
+                    ],
                 ],
                 'plugins' => [
                     // Don't throw exceptions on cache errors

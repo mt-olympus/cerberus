@@ -40,7 +40,7 @@ class Cerberus implements CerberusInterface
     private $timeout;
 
     /**
-     * The default namespace used by the zend-cache storage
+     * The default namespace used by the zend-cache storage.
      *
      * @var string
      */
@@ -138,7 +138,7 @@ class Cerberus implements CerberusInterface
     }
 
     /**
-     * Sets the zend-cache storage namespace
+     * Sets the zend-cache storage namespace.
      *
      * @param string $serviceName
      */

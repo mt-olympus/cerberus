@@ -27,7 +27,6 @@ interface CerberusInterface
      *
      * @returns bool
      */
-
     public function isAvailable($serviceName = null);
 
     /**
