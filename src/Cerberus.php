@@ -40,6 +40,13 @@ class Cerberus implements CerberusInterface
     private $timeout;
 
     /**
+     * The default namespace used by the zend-cache storage
+     *
+     * @var string
+     */
+    private $defaultNamespace;
+
+    /**
      * Constructor.
      *
      * @param \Zend\Cache\Storage\StorageInterface $storage     The storage object
@@ -51,6 +58,7 @@ class Cerberus implements CerberusInterface
         $this->maxFailures = (int) $maxFailures;
         $this->timeout = (int) $timeout;
         $this->storage = $storage;
+        $this->defaultNamespace = $this->storage->getOptions()->getNamespace();
     }
 
     /**
@@ -58,9 +66,9 @@ class Cerberus implements CerberusInterface
      *
      * @see \Cerberus\CerberusInterface::isAvailable()
      */
-    public function isAvailable()
+    public function isAvailable($serviceName = null)
     {
-        return $this->getStatus() !== CerberusInterface::OPEN;
+        return $this->getStatus($serviceName) !== CerberusInterface::OPEN;
     }
 
     /**
@@ -68,8 +76,10 @@ class Cerberus implements CerberusInterface
      *
      * @see \Cerberus\CerberusInterface::getStatus()
      */
-    public function getStatus()
+    public function getStatus($serviceName = null)
     {
+        $this->setNamespace($serviceName);
+
         $success = false;
         $failures = (int) $this->storage->getItem('failures', $success);
         if (!$success) {
@@ -110,8 +120,9 @@ class Cerberus implements CerberusInterface
      *
      * @see \Cerberus\CerberusInterface::reportFailure()
      */
-    public function reportFailure()
+    public function reportFailure($serviceName = null)
     {
+        $this->setNamespace($serviceName);
         $this->storage->incrementItem('failures', 1);
     }
 
@@ -120,8 +131,23 @@ class Cerberus implements CerberusInterface
      *
      * @see \Cerberus\CerberusInterface::reportSuccess()
      */
-    public function reportSuccess()
+    public function reportSuccess($serviceName = null)
     {
+        $this->setNamespace($serviceName);
         $this->storage->setItem('failures', 0);
+    }
+
+    /**
+     * Sets the zend-cache storage namespace
+     *
+     * @param string $serviceName
+     */
+    private function setNamespace($serviceName = null)
+    {
+        if ($serviceName === null) {
+            $this->storage->getOptions()->setNamespace($this->defaultNamespace);
+        } else {
+            $this->storage->getOptions()->setNamespace($serviceName);
+        }
     }
 }

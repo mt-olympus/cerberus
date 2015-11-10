@@ -1,20 +1,22 @@
 <?php
 return [
     'cerberus' => [
+        'max_failues' => 5,
+        'timeout' => 60,
         'storage' => [
             'adapter' => [
                 'name' => 'filesystem',
                 'options' => [
                     'cache_dir' => 'data/cache',
                     //'namespace' => 'test'
-                ]
+                ],
             ],
             'plugins' => [
                 // Don't throw exceptions on cache errors
                 'exception_handler' => [
                     'throw_exceptions' => false
-                ]
-            ]
-        ]
-    ]
+                ],
+            ],
+        ],
+    ],
 ];

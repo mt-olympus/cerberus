@@ -29,11 +29,14 @@ class Factory
     public function __invoke(ContainerInterface $container)
     {
         $config = $container->get('config');
-        if (!isset($config['cerberus']['storage'])) {
+        if (!isset($config['cerberus'])) {
             $storageConfig = [
                 'adapter' => [
                     'name' => 'filesystem',
-                    'cache_dir' => 'data/cache',
+                    'options' => [
+                        'cache_dir' => 'data/cache',
+                        'namespace' => 'cerberus'
+                    ]
                 ],
                 'plugins' => [
                     // Don't throw exceptions on cache errors
@@ -43,12 +46,16 @@ class Factory
                     'Serializer',
                 ],
             ];
+            $maxFailure = 5;
+            $timeout = 60;
         } else {
             $storageConfig = $config['cerberus']['storage'];
+            $maxFailure = (int) $config['cerberus']['max_failure'];
+            $timeout = (int) $config['cerberus']['timeout'];
         }
 
         $storage = StorageFactory::factory($storageConfig);
 
-        return new Cerberus($storage);
+        return new Cerberus($storage, $maxFailure, $timeout);
     }
 }
