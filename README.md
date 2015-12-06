@@ -10,7 +10,7 @@ This library helps you to handle external services timeouts and outages.
 
 It detects service failures and adapts itself. 
 
-You can combine this library with [Kharon](https://github.com/mt-olympus/kharon) to have a realiable service Load Balance.   
+You can combine this library with [Metis](https://github.com/mt-olympus/metis) to have a realiable Load Balance service.
 
 ## Requirements
 
